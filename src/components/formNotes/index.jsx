@@ -1,5 +1,5 @@
 import { FormContent } from "./styles";
-export function CreateForm() {
+export function CreateForm({handleOpenNewNote}) {
   return (
     <FormContent>
       <div>
@@ -27,7 +27,7 @@ export function CreateForm() {
         <textarea name="" id="description" ></textarea>
 
         <span>
-          <button className="cancelNote">Cancelar</button>
+          <button onClick={()=>handleOpenNewNote(false)} className="cancelNote">Cancelar</button>
           <button className="saveNote">Salvar</button>
         </span>
       </div>
