@@ -8,6 +8,7 @@ export const FormContent = styled.form`
   width: 100%;
   align-items: center;
   font-size: 1.2rem;
+  margin-bottom: 1rem;
 
   p {
     text-align: center;

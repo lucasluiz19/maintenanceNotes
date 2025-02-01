@@ -1,7 +1,8 @@
-import { PlusCircle } from "@phosphor-icons/react";
+import {  PlusCircle } from "@phosphor-icons/react";
 import { CreateForm } from "./components/formNotes";
 import { Header } from "./styles";
 import { useState } from "react";
+import { CardsNotes } from "./components/cardNotes";
 
 export function App() {
   const [newNote, setNetNote] = useState(false);
@@ -10,7 +11,6 @@ export function App() {
     event.preventDefault();
 
     setNetNote(props);
-    console.log("deu certo");
   }
   return (
     <div>
@@ -25,6 +25,10 @@ export function App() {
       </Header>
 
       {newNote && <CreateForm handleOpenNewNote={handleOpenNewNote} />}
+
+      <CardsNotes />
+          
+       
     </div>
   );
 }
