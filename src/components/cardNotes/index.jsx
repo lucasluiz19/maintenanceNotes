@@ -12,15 +12,14 @@ export function CardsNotes() {
 
   
   }
-  
+
   async function HandleDeleteNotes(id){
-    await Api.delete(`/notes/${id}`);
+      await Api.delete(`/notes/${id}`)
   }
 
   useEffect(()=> {
     getNotes()
   },[notes])
-
   return (
     <ContainerCard>
       <Cards>
@@ -46,7 +45,7 @@ export function CardsNotes() {
             </p>
 
             <div>
-              <button onClick={()=> HandleDeleteNotes(data.id)} className="delete">
+              <button onClick={()=> HandleDeleteNotes(data.id)}  className="delete">
                 <Trash size={25} />
                 Deletar
               </button>
