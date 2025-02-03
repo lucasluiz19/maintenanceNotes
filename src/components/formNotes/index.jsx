@@ -1,34 +1,81 @@
 import { FormContent } from "./styles";
-export function CreateForm() {
+import { Api } from "../../services/api";
+import { useRef } from "react";
+export function CreateForm({ handleOpenNewNote }) {
+  const inputNumberNote = useRef();
+  const inputResponsible = useRef();
+  const inputLocale = useRef();
+  const inputDate = useRef();
+  const inputTypeNote = useRef();
+  const inputDescription = useRef();
+
+  async function createNotes() {
+    event.preventDefault();
+
+    await Api.post("/notes", {
+      numberNote: inputNumberNote.current.value,
+      responsible: inputResponsible.current.value,
+      locale: inputLocale.current.value,
+      date: inputDate.current.value,
+      typeNote: inputTypeNote.current.value,
+      description: inputDescription.current.value,
+    });
+  }
+
   return (
     <FormContent>
       <div>
         <p>Nova nota de Manutenção</p>
 
         <label htmlFor="numberNote">Digite o Número da nota</label>
-        <input id="numberNote" type="number" placeholder="1234-5678"/>
+        <input
+          ref={inputNumberNote}
+          id="numberNote"
+          type="number"
+          required
+          placeholder="1234-5678"
+        />
 
-        <label htmlFor="response">Responsável</label>
-        <input id="response" type="text" placeholder="José"/>
+        <label htmlFor="responsible">Responsável</label>
+        <input
+          ref={inputResponsible}
+          id="responsible"
+          type="text"
+          required
+          placeholder="José"
+        />
 
         <label htmlFor="locale">Local</label>
-        <input id="locale" type="text" placeholder="Secador 1" />
+        <input
+          ref={inputLocale}
+          id="locale"
+          type="text"
+          required
+          placeholder="Secador 1"
+        />
 
         <label htmlFor="date">Data</label>
-        <input id="date" type="date" />
+        <input ref={inputDate} id="date" required type="date" />
 
         <label htmlFor="typeNote">Tipo de Nota</label>
-        <select name="" id="typeNote">
-          <option value="m2">M2 (Manutenção)</option>
-          <option value="m2">M5 (Melhoria)</option>
+        <select ref={inputTypeNote} required id="typeNote">
+          <option value="Corretiva">M2 (Corretiva)</option>
+          <option value="Melhoria">M5 (Melhoria)</option>
         </select>
 
         <label htmlFor="description">Descrição detalhada da manutenção</label>
-        <textarea name="" id="description" ></textarea>
+        <textarea ref={inputDescription} id="description" />
 
         <span>
-          <button className="cancelNote">Cancelar</button>
-          <button className="saveNote">Salvar</button>
+          <button
+            onClick={() => handleOpenNewNote(false)}
+            className="cancelNote"
+          >
+            Cancelar
+          </button>
+          <button onClick={createNotes} className="saveNote">
+            Salvar
+          </button>
         </span>
       </div>
     </FormContent>
